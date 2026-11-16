@@ -55,12 +55,12 @@
   letter-spacing: -0.01em;
 }
 
+/* Wraps instead of truncating: nothing may be cut off at phone width. */
 .subtitle {
   font-size: 13px;
+  line-height: 1.35;
   color: var(--ink-3);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  text-wrap: pretty;
 }
 
 .badge {
