@@ -22,12 +22,12 @@ These are the rules from "Moderated Session Prototype Requirements: Trip-Planner
 | The three cards look clearly different, not one layout with the text swapped | ✅ | ✅ | ✅ | [Laptop, side by side](docs/session/laptop-1-cards.png), [phone, stacked](docs/session/phone-1-cards.png) |
 | At phone width nothing is cut off and nothing needs sideways scrolling | ✅ | ✅ | n/a | [Real phone](docs/session/real-phone/4-cards-stay-experience.jpg), [phone, whole thread](docs/session/phone-1-cards.png) |
 | The forced failure (`/fail`) shows a friendly message with Try again inside the assistant bubble | ✅ | ✅ | ✅ | [Real phone](docs/session/real-phone/8-error-bubble.jpg), [phone](docs/session/phone-2-error-bubble.png), [laptop](docs/session/laptop-2-error-bubble.png) |
-| 0 blank-chat moments: at the failure, when Try again is pressed, and after it | Not captured | ✅ | ✅ | Thinking dots right after Try again: [phone](docs/session/phone-2b-thinking-after-retry.png), [laptop](docs/session/laptop-2b-thinking-after-retry.png) |
-| Try again brings the three cards back | Not captured | ✅ | ✅ | [Phone](docs/session/phone-3-cards-after-retry.png), [laptop](docs/session/laptop-3-cards-after-retry.png) |
+| 0 blank-chat moments: at the failure, when Try again is pressed, and after it | ✅ | ✅ | ✅ | Thinking dots right after Try again: [real phone](docs/session/real-phone/9-thinking-after-try-again.jpg), [phone](docs/session/phone-2b-thinking-after-retry.png), [laptop](docs/session/laptop-2b-thinking-after-retry.png) |
+| Try again brings the three cards back | ✅ | ✅ | ✅ | [Real phone](docs/session/real-phone/10-cards-after-try-again.jpg), [phone](docs/session/phone-3-cards-after-retry.png), [laptop](docs/session/laptop-3-cards-after-retry.png) |
 
 **Setups:**
 
-- **Real phone:** an Android phone in Chrome, run by hand on the live link. The doc's phone setup is an iPhone 14 in Safari. Hannah opens the link on her iPhone, so the Safari check happens at the dry run. The real-phone run didn't capture the moment after Try again; the other two setups cover it.
+- **Real phone:** an Android phone in Chrome, run by hand on the live link. Chrome blocks screenshots in Incognito tabs, so the Try again shots were taken in a normal tab. The app has no login and saves nothing, so a normal tab shows exactly what a private one does. The doc's phone setup is an iPhone 14 in Safari, which still needs a check (see below the phone screenshots).
 - **Phone 390px and Laptop 1440px:** a script drove a fresh incognito Chrome window on the live link. The phone setup used Chrome's iPhone 14 emulation (390px, Safari user agent, touch). The script typed the request, clicked Try again and recorded every change to the reply bubble: thinking → cards on the happy path, and thinking → error bubble → thinking → cards on the error path, with no moment where the chat was empty. The page was exactly as wide as the window, with nothing past the right edge.
 
 ### Session screenshots
@@ -53,7 +53,11 @@ Android phone, Chrome, dark mode, on the live link.
 <img src="docs/session/real-phone/6-cards-food-budget.jpg" width="160" alt="Real phone: the Food card and the budget line">
 <img src="docs/session/real-phone/7-typing-fail.jpg" width="160" alt="Real phone: typing Kyoto weekend plan /fail">
 <img src="docs/session/real-phone/8-error-bubble.jpg" width="160" alt="Real phone: the error bubble with Try again">
+<img src="docs/session/real-phone/9-thinking-after-try-again.jpg" width="160" alt="Real phone: thinking dots right after Try again">
+<img src="docs/session/real-phone/10-cards-after-try-again.jpg" width="160" alt="Real phone: the cards back after Try again">
 </p>
+
+**Still open:** iPhone Safari. The doc's phone setup is an iPhone 14 in Safari, and Safari handles layout and the keyboard its own way. A Safari run (private window, iPhone 14 size) will be added here before Thursday's dry run.
 
 ## Team message
 
