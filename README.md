@@ -12,22 +12,23 @@ This is the prototype for the spec sheet "Building Airbnb's Kyoto trip planner b
 
 These are the rules from "Moderated Session Prototype Requirements: Trip-Planner Chat", checked on the live link above with nothing logged in. Every tick links to a screenshot that shows it.
 
-| Rule | Real phone | Phone 390px | Laptop 1440px | Evidence |
-| --- | :---: | :---: | :---: | --- |
-| The link is the production `*.vercel.app` domain, not a preview link | ✅ | ✅ | ✅ | [Real phone address bar](docs/session/real-phone/1-landing.jpg) |
-| Opens with no install, no login and no configuration | ✅ | ✅ | ✅ | [Real phone, first open](docs/session/real-phone/1-landing.jpg), [laptop](docs/session/laptop-0-thinking.png) |
-| Visible note that the trips are sample data and nothing is booked | ✅ | ✅ | ✅ | Under the message box in every shot, e.g. [real phone](docs/session/real-phone/1-landing.jpg), [phone](docs/session/phone-1-cards.png), [laptop](docs/session/laptop-1-cards.png) |
-| One typed request ("Kyoto weekend plan") shows a thinking state first | ✅ | ✅ | ✅ | [Real phone](docs/session/real-phone/2-thinking.jpg), [phone](docs/session/phone-0-thinking.png), [laptop](docs/session/laptop-0-thinking.png) |
-| 3 of 3 cards appear: stay, Experience and food | ✅ | ✅ | ✅ | [Real phone](docs/session/real-phone/3-cards-stay.jpg) ([2](docs/session/real-phone/5-cards-experience-food.jpg)), [phone](docs/session/phone-1-cards.png), [laptop](docs/session/laptop-1-cards.png) |
-| The three cards look clearly different, not one layout with the text swapped | ✅ | ✅ | ✅ | [Laptop, side by side](docs/session/laptop-1-cards.png), [phone, stacked](docs/session/phone-1-cards.png) |
-| At phone width nothing is cut off and nothing needs sideways scrolling | ✅ | ✅ | n/a | [Real phone](docs/session/real-phone/4-cards-stay-experience.jpg), [phone, whole thread](docs/session/phone-1-cards.png) |
-| The forced failure (`/fail`) shows a friendly message with Try again inside the assistant bubble | ✅ | ✅ | ✅ | [Real phone](docs/session/real-phone/8-error-bubble.jpg), [phone](docs/session/phone-2-error-bubble.png), [laptop](docs/session/laptop-2-error-bubble.png) |
-| 0 blank-chat moments: at the failure, when Try again is pressed, and after it | ✅ | ✅ | ✅ | Thinking dots right after Try again: [real phone](docs/session/real-phone/9-thinking-after-try-again.jpg), [phone](docs/session/phone-2b-thinking-after-retry.png), [laptop](docs/session/laptop-2b-thinking-after-retry.png) |
-| Try again brings the three cards back | ✅ | ✅ | ✅ | [Real phone](docs/session/real-phone/10-cards-after-try-again.jpg), [phone](docs/session/phone-3-cards-after-retry.png), [laptop](docs/session/laptop-3-cards-after-retry.png) |
+| Rule | Real phone | Safari 390px | Phone 390px | Laptop 1440px | Evidence |
+| --- | :---: | :---: | :---: | :---: | --- |
+| The link is the production `*.vercel.app` domain, not a preview link | ✅ | ✅ | ✅ | ✅ | [Real phone address bar](docs/session/real-phone/1-landing.jpg), [Safari address bar](docs/session/safari/1-start-iphone-size.jpg) |
+| Opens with no install, no login and no configuration | ✅ | ✅ | ✅ | ✅ | [Real phone, first open](docs/session/real-phone/1-landing.jpg), [laptop](docs/session/laptop-0-thinking.png), [Safari, private window](docs/session/safari/1-start-iphone-size.jpg) |
+| Visible note that the trips are sample data and nothing is booked | ✅ | ✅ | ✅ | ✅ | Under the message box in every shot, e.g. [real phone](docs/session/real-phone/1-landing.jpg), [phone](docs/session/phone-1-cards.png), [laptop](docs/session/laptop-1-cards.png), [Safari](docs/session/safari/1-start-iphone-size.jpg) |
+| One typed request ("Kyoto weekend plan") shows a thinking state first | ✅ | ✅ | ✅ | ✅ | [Real phone](docs/session/real-phone/2-thinking.jpg), [phone](docs/session/phone-0-thinking.png), [laptop](docs/session/laptop-0-thinking.png), [Safari](docs/session/safari/2-thinking.jpg) |
+| 3 of 3 cards appear: stay, Experience and food | ✅ | ✅ | ✅ | ✅ | [Real phone](docs/session/real-phone/3-cards-stay.jpg) ([2](docs/session/real-phone/5-cards-experience-food.jpg)), [phone](docs/session/phone-1-cards.png), [laptop](docs/session/laptop-1-cards.png), [Safari](docs/session/safari/3-cards-stay.jpg) ([2](docs/session/safari/4-cards-experience-food.jpg)) |
+| The three cards look clearly different, not one layout with the text swapped | ✅ | ✅ | ✅ | ✅ | [Laptop, side by side](docs/session/laptop-1-cards.png), [phone, stacked](docs/session/phone-1-cards.png), [Safari](docs/session/safari/4-cards-experience-food.jpg) |
+| At phone width nothing is cut off and nothing needs sideways scrolling | ✅ | ✅ | ✅ | n/a | [Real phone](docs/session/real-phone/4-cards-stay-experience.jpg), [phone, whole thread](docs/session/phone-1-cards.png), [Safari](docs/session/safari/3-cards-stay.jpg) |
+| The forced failure (`/fail`) shows a friendly message with Try again inside the assistant bubble | ✅ | ✅ | ✅ | ✅ | [Real phone](docs/session/real-phone/8-error-bubble.jpg), [phone](docs/session/phone-2-error-bubble.png), [laptop](docs/session/laptop-2-error-bubble.png), [Safari](docs/session/safari/5-error-bubble.jpg) |
+| 0 blank-chat moments: at the failure, when Try again is pressed, and after it | ✅ | Not captured yet | ✅ | ✅ | Thinking dots right after Try again: [real phone](docs/session/real-phone/9-thinking-after-try-again.jpg), [phone](docs/session/phone-2b-thinking-after-retry.png), [laptop](docs/session/laptop-2b-thinking-after-retry.png) |
+| Try again brings the three cards back | ✅ | Not captured yet | ✅ | ✅ | [Real phone](docs/session/real-phone/10-cards-after-try-again.jpg), [phone](docs/session/phone-3-cards-after-retry.png), [laptop](docs/session/laptop-3-cards-after-retry.png) |
 
 **Setups:**
 
-- **Real phone:** an Android phone in Chrome, run by hand on the live link. Chrome blocks screenshots in Incognito tabs, so the Try again shots were taken in a normal tab. The app has no login and saves nothing, so a normal tab shows exactly what a private one does. The doc's phone setup is an iPhone 14 in Safari, which still needs a check (see below the phone screenshots).
+- **Real phone:** an Android phone in Chrome, run by hand on the live link. Chrome blocks screenshots in Incognito tabs, so the Try again shots were taken in a normal tab. The app has no login and saves nothing, so a normal tab shows exactly what a private one does. The doc's phone setup is an iPhone 14 in Safari, covered as closely as possible by the Safari run below.
+- **Safari 390px:** Safari on a Mac, in a private window, run by hand on the live link in Responsive Design Mode at iPhone size (390 × 844, 3x). It's the same browser family as iPhone Safari at iPhone size, but not a physical iPhone, so the iPhone's own keyboard and touch handling aren't covered. The moment after Try again hasn't been captured in Safari yet.
 - **Phone 390px and Laptop 1440px:** a script drove a fresh incognito Chrome window on the live link. The phone setup used Chrome's iPhone 14 emulation (390px, Safari user agent, touch). The script typed the request, clicked Try again and recorded every change to the reply bubble: thinking → cards on the happy path, and thinking → error bubble → thinking → cards on the error path, with no moment where the chat was empty. The page was exactly as wide as the window, with nothing past the right edge.
 
 ### Session screenshots
@@ -57,7 +58,22 @@ Android phone, Chrome, dark mode, on the live link.
 <img src="docs/session/real-phone/10-cards-after-try-again.jpg" width="160" alt="Real phone: the cards back after Try again">
 </p>
 
-**Still open:** iPhone Safari. The doc's phone setup is an iPhone 14 in Safari, and Safari handles layout and the keyboard its own way. A Safari run (private window, iPhone 14 size) will be added here before Thursday's dry run.
+### Safari screenshots
+
+Safari on a Mac, private window, Responsive Design Mode at iPhone size (390 × 844), on the live link.
+
+<p>
+<img src="docs/session/safari/0-laptop-width-private.jpg" width="320" alt="Safari private window at laptop width, opening straight into the chat">
+<img src="docs/session/safari/1-start-iphone-size.jpg" width="320" alt="Safari Responsive Design Mode at 390 by 844 showing the chat start page">
+</p>
+<p>
+<img src="docs/session/safari/2-thinking.jpg" width="200" alt="Safari at iPhone size: thinking dots with the box locked">
+<img src="docs/session/safari/3-cards-stay.jpg" width="160" alt="Safari at iPhone size: the Stay card">
+<img src="docs/session/safari/4-cards-experience-food.jpg" width="160" alt="Safari at iPhone size: the end of the Experience card and the Food card">
+<img src="docs/session/safari/5-error-bubble.jpg" width="160" alt="Safari at iPhone size: the error bubble with Try again">
+</p>
+
+**Still open:** the Safari shots after Try again, and a run on a physical iPhone, which Hannah does at the dry run.
 
 ## Team message
 
