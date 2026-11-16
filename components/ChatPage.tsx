@@ -16,6 +16,7 @@ import styles from "./ChatPage.module.css";
 // How long the reply bubble shows the thinking dots before the cards arrive.
 const THINKING_MS = 1800;
 const SUGGESTION = "Kyoto weekend plan";
+const SAMPLE_DATA_NOTE = "Sample trips for a research prototype. Nothing is booked or paid for.";
 
 type Message =
   | { id: number; role: "user"; text: string }
@@ -232,6 +233,8 @@ export default function ChatPage() {
             <Icon name="arrowUp" size={18} />
           </button>
         </form>
+        {/* Research ethics: guests must always see that nothing real is booked. */}
+        <p className={styles.sampleNote}>{SAMPLE_DATA_NOTE}</p>
       </footer>
 
       {results && <ResultsSheet kind={results.kind} intent={results.intent} onClose={closeResults} />}

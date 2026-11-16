@@ -177,6 +177,17 @@
   padding-block: 12px max(12px, env(safe-area-inset-bottom, 0px));
 }
 
+.sampleNote {
+  width: 100%;
+  max-width: 1080px;
+  margin: 8px auto 0;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  text-align: center;
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
 .form {
   display: flex;
   gap: 8px;

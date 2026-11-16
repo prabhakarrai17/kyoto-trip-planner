@@ -61,6 +61,7 @@ export default function ResultsSheet({
             </span>
             {title} in {intent.place}
           </h2>
+          <p className={styles.sampleNote}>Sample data for a research prototype. Nothing is booked.</p>
           <ul className={styles.filters} aria-label="Filters applied">
             <li>
               <Icon name="pin" size={13} />
