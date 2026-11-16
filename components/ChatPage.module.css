@@ -3,6 +3,8 @@
   height: 100dvh;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
+  /* Without this the column grows to fit the one-line subtitle on phones. */
+  grid-template-columns: minmax(0, 1fr);
   background: var(--paper);
 }
 

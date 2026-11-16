@@ -3,10 +3,17 @@ import FoodCard from "@/components/cards/FoodCard";
 import StayCard from "@/components/cards/StayCard";
 import Icon from "@/components/Icon";
 import { formatDateRange, usd } from "@/lib/format";
+import type { ResultsKind } from "@/lib/mockReply";
 import type { TripReply } from "@/lib/types";
 import styles from "./TripReplyView.module.css";
 
-export default function TripReplyView({ reply }: { reply: TripReply }) {
+export default function TripReplyView({
+  reply,
+  onSeeAll,
+}: {
+  reply: TripReply;
+  onSeeAll: (kind: ResultsKind) => void;
+}) {
   const { intent, cards, budget } = reply;
   const [stay, experience, food] = cards;
   const share = Math.min(100, Math.round((budget.total_usd / budget.reference_usd) * 100));
@@ -32,9 +39,9 @@ export default function TripReplyView({ reply }: { reply: TripReply }) {
       </div>
 
       <div className={styles.cards}>
-        <StayCard data={stay} />
-        <ExperienceCard data={experience} />
-        <FoodCard data={food} />
+        <StayCard data={stay} onSeeAll={() => onSeeAll("stay")} />
+        <ExperienceCard data={experience} onSeeAll={() => onSeeAll("experience")} />
+        <FoodCard data={food} onSeeAll={() => onSeeAll("food")} />
       </div>
 
       <div className={styles.budget}>

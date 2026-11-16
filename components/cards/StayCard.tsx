@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Icon from "@/components/Icon";
 import { usd } from "@/lib/format";
 import type { StayCardData } from "@/lib/types";
@@ -6,7 +7,7 @@ import Filler from "./Filler";
 import styles from "./StayCard.module.css";
 
 // Layout: wide image box under the headline, price and rating on the photo.
-export default function StayCard({ data }: { data: StayCardData }) {
+export default function StayCard({ data, onSeeAll }: { data: StayCardData; onSeeAll: () => void }) {
   const item = data.items[0];
   const isFiller = (field: string) => item.filled_fields.includes(field);
 
@@ -22,10 +23,23 @@ export default function StayCard({ data }: { data: StayCardData }) {
         <h3 className={styles.title}>{data.headline}</h3>
 
         <div className={styles.photo}>
-          <span className={styles.photoNote}>
-            <Icon name="image" size={15} />
-            Photo coming soon
-          </span>
+          {item.image_url ? (
+            <>
+              <Image
+                src={item.image_url}
+                alt={item.image_alt ?? ""}
+                fill
+                sizes="(min-width: 900px) 320px, 440px"
+                className={styles.img}
+              />
+              <span className={styles.sample}>Sample photo</span>
+            </>
+          ) : (
+            <span className={styles.photoNote}>
+              <Icon name="image" size={15} />
+              Photo coming soon
+            </span>
+          )}
           <span className={styles.price}>
             {usd(item.price_usd)}
             <small> / {item.price_unit}</small>
@@ -51,7 +65,7 @@ export default function StayCard({ data }: { data: StayCardData }) {
           <strong>{usd(item.total_usd)}</strong> total for {item.nights} nights
         </p>
 
-        <button type="button" className={base.cta}>
+        <button type="button" className={base.cta} onClick={onSeeAll} aria-haspopup="dialog">
           {data.cta.label}
           <Icon name="arrowRight" />
         </button>

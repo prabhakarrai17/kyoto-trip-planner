@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Icon from "@/components/Icon";
 import { usd } from "@/lib/format";
 import type { FoodCardData } from "@/lib/types";
@@ -7,7 +8,7 @@ import styles from "./FoodCard.module.css";
 
 // Layout: small square image box to the right of the headline, then a short
 // list of practical notes and tag pills.
-export default function FoodCard({ data }: { data: FoodCardData }) {
+export default function FoodCard({ data, onSeeAll }: { data: FoodCardData; onSeeAll: () => void }) {
   const item = data.items[0];
   const isFiller = (field: string) => item.filled_fields.includes(field);
 
@@ -26,8 +27,21 @@ export default function FoodCard({ data }: { data: FoodCardData }) {
             <p className={styles.sub}>{item.neighbourhood}</p>
           </div>
           <div className={styles.thumb}>
-            <Icon name="image" size={16} />
-            <span>Photo soon</span>
+            {item.image_url ? (
+              <Image
+                src={item.image_url}
+                alt={item.image_alt ?? ""}
+                fill
+                sizes="76px"
+                className={styles.img}
+                title="Sample photo"
+              />
+            ) : (
+              <>
+                <Icon name="image" size={16} />
+                <span>Photo soon</span>
+              </>
+            )}
           </div>
         </div>
 
@@ -54,7 +68,7 @@ export default function FoodCard({ data }: { data: FoodCardData }) {
           ))}
         </ul>
 
-        <button type="button" className={base.cta}>
+        <button type="button" className={base.cta} onClick={onSeeAll} aria-haspopup="dialog">
           {data.cta.label}
           <Icon name="arrowRight" />
         </button>

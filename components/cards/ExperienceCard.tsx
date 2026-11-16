@@ -7,7 +7,13 @@ import styles from "./ExperienceCard.module.css";
 
 // Layout: no image box. The start time is the biggest text, beside a
 // timeline line, so this card reads as "when" rather than "where".
-export default function ExperienceCard({ data }: { data: ExperienceCardData }) {
+export default function ExperienceCard({
+  data,
+  onSeeAll,
+}: {
+  data: ExperienceCardData;
+  onSeeAll: () => void;
+}) {
   const item = data.items[0];
   const isFiller = (field: string) => item.filled_fields.includes(field);
 
@@ -61,7 +67,7 @@ export default function ExperienceCard({ data }: { data: ExperienceCardData }) {
           <strong>{usd(item.price_usd)}</strong> per guest · {usd(item.total_usd)} for 2
         </p>
 
-        <button type="button" className={base.cta}>
+        <button type="button" className={base.cta} onClick={onSeeAll} aria-haspopup="dialog">
           {data.cta.label}
           <Icon name="arrowRight" />
         </button>

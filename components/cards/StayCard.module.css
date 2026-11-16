@@ -23,6 +23,25 @@
     linear-gradient(160deg, color-mix(in oklab, var(--stay) 14%, var(--stay-tint)), color-mix(in oklab, var(--stay) 40%, var(--stay-tint)));
   display: grid;
   place-items: center;
+  overflow: hidden;
+}
+
+.img {
+  object-fit: cover;
+}
+
+/* Over a photo, so fixed colors read the same in both themes. */
+.sample {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgb(0 0 0 / 0.55);
+  color: #fff;
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 .photoNote {

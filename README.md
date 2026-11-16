@@ -32,11 +32,36 @@ Each card has its own color, its own image box position and its own largest text
 
 | Card | Color | Image box | Largest text |
 | --- | --- | --- | --- |
-| Stay | Indigo | Wide, under the headline. Price and rating sit on the photo. | Listing title |
+| Stay | Indigo | Wide photo, under the headline. Price and rating sit on the photo. | Listing title |
 | Experience | Green | None | Start time (14:00) |
-| Food | Saffron | Small square, right of the headline | Place name |
+| Food | Saffron | Small square photo, right of the headline | Place name |
 
-The content pack has no photo URLs because image rights aren't cleared, so both image boxes show a "Photo coming soon" placeholder.
+### See all
+
+Each card's button opens a sheet over the conversation with every row from that sheet of the content pack. The trip's place, dates and guests are shown as the filters applied. The pick from the reply is marked **In your plan**, and the sold-out Fushimi Inari walk is listed separately under **Sold out on your dates**.
+
+Close the sheet with **Back to chat**, the Escape key or a click outside it. The conversation stays exactly as it was. The sheet slides in from the right on wide screens and fills the screen on phones.
+
+## Photos
+
+The content pack has no listing photos because image rights aren't cleared. The cards and lists use **sample photos** instead: CC0 or public-domain images from Wikimedia Commons that show the area or the kind of thing, not the actual listing. The Stay card labels its photo "Sample photo" so testers don't mistake it for the real place.
+
+No free photo fit S3 (a flat off Sanjo Street) or E2 (the Nishiki Market walk), so those two keep a "Photo soon" placeholder. That also shows what a listing without a photo looks like.
+
+| Row | Photo | Author | License |
+| --- | --- | --- | --- |
+| S1 | [Streets of Gion, Kyoto](https://commons.wikimedia.org/wiki/File:Streets_of_Gion,_Kyoto_-_Gion7708.jpg) | lumoplank | CC0 |
+| S2 | [Kyoto Kamogawa Noryo-Yuka](https://commons.wikimedia.org/wiki/File:Kyoto_Kamogawa_Noryo-Yuka.jpg) | MaedaAkihiko | CC0 |
+| S4 | [Washitsu in Toki-ke house](https://commons.wikimedia.org/wiki/File:Washitsu_in_Toki-ke_house.jpg) | 妖精書士 | CC0 |
+| E1 | [The Chanoyu, or Japanese tea ceremony](https://commons.wikimedia.org/wiki/File:The_Chanoyu,_or_Japanese_tea_ceremony_-_DPLA_-_e9f081159c1b2718cd00b211a41071c9.jpg) | Unknown (via DPLA) | Public domain |
+| E3 | [Fushimi Inari Torii](https://commons.wikimedia.org/wiki/File:20181110_Fushimi_Inari_Torii_10.jpg) | Balon Greyjoy | CC0 |
+| E4 | [Openwork Hexagonal Ko-Kiyomizu Ware Bowl](https://commons.wikimedia.org/wiki/File:Openwork_Hexagonal_Ko-Kiyomizu_Ware_Bowl,_c._1731-1752,_Japan,_artist_unknown,_stoneware_with_overglaze_enamels_-_Art_Institute_of_Chicago_-_DSC00215.JPG) | Daderot | CC0 |
+| F1 | [Ramen and Chahan](https://commons.wikimedia.org/wiki/File:Ramen_and_Chahan.jpg) | Akahito Yamabe | CC0 |
+| F2 | [Japanese tofu](https://commons.wikimedia.org/wiki/File:Japanese_tofu_001.jpg) | Ocdp | CC0 |
+| F3 | [Yakitori](https://commons.wikimedia.org/wiki/File:YakitoriM0826.jpg) | Fg2 | Public domain |
+| F4 | [Kaiseki-style set meal](https://commons.wikimedia.org/wiki/File:IMG-2023-12-2-kaisekifuuteishoku.jpg) | Htheword | CC0 |
+
+None of these licenses require credit, but it's listed here anyway. To swap a photo, replace the file in `public/images/` and its entry in [`data/photos.ts`](data/photos.ts).
 
 ## Where the content comes from
 
@@ -65,6 +90,7 @@ components/
   ChatPage.tsx            Header, scrolling thread, locking message box
   ThinkingDots.tsx        Pulsing dots shown while the reply loads
   TripReplyView.tsx       Understood-intent chips, the three cards, budget line
+  ResultsSheet.tsx        "See all" sheet listing every row for one card
   cards/
     StayCard.tsx          Stay card and its layout
     ExperienceCard.tsx    Experience card and its layout
@@ -72,7 +98,9 @@ components/
     cardBase.module.css   Frame, header strip and button shared by all cards
     Filler.tsx            Styles filler text for empty content pack cells
 data/contentPack.ts       Rows from the content pack workbook
-lib/mockReply.ts          Builds the reply from the picked rows
+data/photos.ts            Sample photo for each row, with credits
+public/images/            The sample photos
+lib/mockReply.ts          Builds the reply and the See all lists from the rows
 lib/types.ts              Reply shape from the spec
 ```
 
@@ -82,5 +110,5 @@ Styling is plain CSS Modules, one file per component, with no UI library.
 
 - Error bubbles and the `/fail` test switch from the spec
 - Editing the understood-intent chips
-- Card buttons opening results pages
+- Opening a single listing from the See all list
 - Follow-up messages that refine the cards

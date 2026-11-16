@@ -28,7 +28,8 @@ export type StayItem = {
   review_count: number;
   host: string;
   highlight: string;
-  image_url: null;
+  image_url: string | null;
+  image_alt: string | null;
   filled_fields: string[];
 };
 
@@ -46,6 +47,8 @@ export type ExperienceItem = {
   host: string;
   meeting_point: string;
   availability: string;
+  image_url: string | null;
+  image_alt: string | null;
   filled_fields: string[];
 };
 
@@ -59,7 +62,8 @@ export type FoodItem = {
   total_usd: number;
   walk_min: number;
   booking_note: string;
-  image_url: null;
+  image_url: string | null;
+  image_alt: string | null;
   filled_fields: string[];
 };
 

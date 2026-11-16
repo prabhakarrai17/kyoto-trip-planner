@@ -1,11 +1,12 @@
 "use client";
 
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
 import Icon from "@/components/Icon";
+import ResultsSheet from "@/components/ResultsSheet";
 import ThinkingDots from "@/components/ThinkingDots";
 import TripReplyView from "@/components/TripReplyView";
-import { buildMockReply } from "@/lib/mockReply";
-import type { TripReply } from "@/lib/types";
+import { buildMockReply, type ResultsKind } from "@/lib/mockReply";
+import type { Intent, TripReply } from "@/lib/types";
 import styles from "./ChatPage.module.css";
 
 // How long the reply bubble shows the thinking dots before the cards arrive.
@@ -21,6 +22,8 @@ export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [draft, setDraft] = useState("");
   const [isThinking, setIsThinking] = useState(false);
+  const [results, setResults] = useState<{ kind: ResultsKind; intent: Intent } | null>(null);
+  const closeResults = useCallback(() => setResults(null), []);
 
   const threadRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -154,7 +157,10 @@ export default function ChatPage() {
                   <span className={styles.avatar} aria-hidden="true">
                     <Icon name="spark" size={15} />
                   </span>
-                  <TripReplyView reply={m.reply} />
+                  <TripReplyView
+                    reply={m.reply}
+                    onSeeAll={(kind) => setResults({ kind, intent: m.reply.intent })}
+                  />
                 </div>
               );
             })
@@ -188,6 +194,8 @@ export default function ChatPage() {
           </button>
         </form>
       </footer>
+
+      {results && <ResultsSheet kind={results.kind} intent={results.intent} onClose={closeResults} />}
     </div>
   );
 }
