@@ -4,13 +4,29 @@ A chat-style search prototype. A guest types a trip idea like "Kyoto weekend pla
 
 This is the prototype for the spec sheet "Building Airbnb's Kyoto trip planner before Thursday's guest test". It's a concept prototype, not an official Airbnb product.
 
-## Screenshot
+## Screenshots
 
 The thread after sending "Kyoto weekend plan": the understood-intent chips, then the Stay, Experience and Food cards side by side, and the budget line.
 
 ![The chat thread after asking for a Kyoto weekend plan, showing the Stay, Experience and Food cards side by side](docs/kyoto-thread.png)
 
 Image file: [`docs/kyoto-thread.png`](docs/kyoto-thread.png)
+
+### Error bubble
+
+The reply bubble after sending "Kyoto weekend plan /fail", when the answer can't be turned into cards.
+
+![The error bubble: "We couldn't put your plan together." with a Try again button inside the reply bubble](docs/error-bubble.png)
+
+Image file: [`docs/error-bubble.png`](docs/error-bubble.png)
+
+### Three cards after Try again
+
+The same bubble after clicking **Try again**: the thinking dots run again, then the Stay, Experience and Food cards arrive.
+
+![The Stay, Experience and Food cards shown after clicking Try again](docs/cards-after-retry.png)
+
+Image file: [`docs/cards-after-retry.png`](docs/cards-after-retry.png)
 
 ## Run it
 
@@ -31,6 +47,26 @@ To open straight to a reply, which is handy for testers, use <http://localhost:3
 4. The message box unlocks and gets focus back, ready for the next message.
 
 Every message gets the same Kyoto reply, because this stage uses a fixed mock response.
+
+## Forcing the error
+
+**To fire the trigger, add `/fail` to the end of any message, for example `Kyoto weekend plan /fail`, or open <http://localhost:3000/?q=Kyoto%20weekend%20plan%20%2Ffail>.**
+
+What happens:
+
+1. Your message appears without the `/fail` part, and the box locks while the thinking dots run.
+2. The mock server answers with broken sample data: the stay card has no headline and its items aren't a list, the experience card's type is misspelled, and the food card is missing ([`lib/mockServer.ts`](lib/mockServer.ts)).
+3. The app checks every reply before showing it ([`lib/parseReply.ts`](lib/parseReply.ts)). This one fails the check, so the reply bubble becomes the error bubble.
+4. **Try again** sends the same message without the trigger. The same bubble shows the thinking dots, then the three cards.
+
+The error bubble follows the Assistant Bubble Error Message Guidelines:
+
+- **Wording:** a lead line of 8 words or fewer, one sentence on what happens next, no blame, no exclamation marks, and none of the banned words or status codes.
+- **Action:** one button, "Try again", inside the bubble. No toasts, pop-ups or modals.
+- **Look:** same shape and position as a normal reply (shared classes in [`components/bubbleClasses.ts`](components/bubbleClasses.ts)), neutral colours only, no red, and no warning icon.
+- **Accessibility:** the thread is a polite live region that's on the page before the message appears, the button has a visible focus ring and is 44px tall, and the text meets AA contrast.
+
+The bubble is built with Tailwind CSS in [`components/ErrorBubble.tsx`](components/ErrorBubble.tsx).
 
 ## The three cards
 
@@ -95,6 +131,8 @@ app/
 components/
   ChatPage.tsx            Header, scrolling thread, locking message box
   ThinkingDots.tsx        Pulsing dots shown while the reply loads
+  ErrorBubble.tsx         Error bubble with Try again (Tailwind CSS)
+  bubbleClasses.ts        Shape classes shared by every assistant bubble
   TripReplyView.tsx       Understood-intent chips, the three cards, budget line
   ResultsSheet.tsx        "See all" sheet listing every row for one card
   cards/
@@ -107,14 +145,16 @@ data/contentPack.ts       Rows from the content pack workbook
 data/photos.ts            Sample photo for each row, with credits
 public/images/            The sample photos
 lib/mockReply.ts          Builds the reply and the See all lists from the rows
+lib/mockServer.ts         Stands in for the search API, including the /fail trigger
+lib/parseReply.ts         Checks a reply can become the three cards
 lib/types.ts              Reply shape from the spec
 ```
 
-Styling is plain CSS Modules, one file per component, with no UI library.
+Most styling is CSS Modules, one file per component. The assistant bubbles, including the error bubble, use Tailwind CSS. Tailwind reads the app's colour tokens, so its classes follow light and dark mode too.
 
 ## Not in this stage
 
-- Error bubbles and the `/fail` test switch from the spec
+- The spec's other error cases (unclear place, low availability, one card failing, offline)
 - Editing the understood-intent chips
 - Opening a single listing from the See all list
 - Follow-up messages that refine the cards

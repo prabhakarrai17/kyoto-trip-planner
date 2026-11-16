@@ -1,3 +1,25 @@
+/* Tailwind theme and utilities only. Its base reset (preflight) is left out
+   because the reset below already covers the rest of the app. */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* Expose the app's tokens to Tailwind, so classes like bg-surface and
+   text-ink follow light and dark mode the same way the CSS Modules do. */
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-chip: var(--chip);
+  --color-on-accent: var(--on-accent);
+  --font-display: var(--font-display), system-ui, sans-serif;
+  --font-body: var(--font-body), system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, monospace;
+}
+
 /* Design tokens. Card colors match the spec sheet:
    Stay = indigo, Experience = green, Food = saffron. */
 :root {
@@ -49,41 +71,44 @@
   }
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* The reset sits in the base layer so Tailwind utilities (a later layer) can override it. */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-html,
-body {
-  height: 100%;
-}
+  html,
+  body {
+    height: 100%;
+  }
 
-body {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--font-body), "Segoe UI", system-ui, -apple-system, sans-serif;
-  font-size: 15px;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-}
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body), "Segoe UI", system-ui, -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
 
-button,
-input {
-  font: inherit;
-  color: inherit;
-}
+  button,
+  input {
+    font: inherit;
+    color: inherit;
+  }
 
-button {
-  cursor: pointer;
-}
+  button {
+    cursor: pointer;
+  }
 
-:focus-visible {
-  outline: 2px solid var(--focus);
-  outline-offset: 2px;
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
 }
 
 .visually-hidden {

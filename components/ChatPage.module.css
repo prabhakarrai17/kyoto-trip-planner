@@ -124,14 +124,6 @@
   color: var(--ink-2);
 }
 
-.thinkingBubble {
-  justify-self: start;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 20px 20px 20px 6px;
-  padding: 10px 16px;
-}
-
 /* Empty state */
 .empty {
   margin: auto;

@@ -1,11 +1,15 @@
 "use client";
 
 import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
+import { ASSISTANT_BUBBLE, ASSISTANT_BUBBLE_COLORS } from "@/components/bubbleClasses";
+import ErrorBubble from "@/components/ErrorBubble";
 import Icon from "@/components/Icon";
 import ResultsSheet from "@/components/ResultsSheet";
 import ThinkingDots from "@/components/ThinkingDots";
 import TripReplyView from "@/components/TripReplyView";
-import { buildMockReply, type ResultsKind } from "@/lib/mockReply";
+import type { ResultsKind } from "@/lib/mockReply";
+import { fetchReplyBody, readTrigger } from "@/lib/mockServer";
+import { parseTripReply } from "@/lib/parseReply";
 import type { Intent, TripReply } from "@/lib/types";
 import styles from "./ChatPage.module.css";
 
@@ -16,7 +20,9 @@ const SUGGESTION = "Kyoto weekend plan";
 type Message =
   | { id: number; role: "user"; text: string }
   | { id: number; role: "assistant"; status: "thinking" }
-  | { id: number; role: "assistant"; status: "done"; reply: TripReply };
+  | { id: number; role: "assistant"; status: "done"; reply: TripReply }
+  // The reply couldn't be turned into cards. Keeps the query so Try again can resend it.
+  | { id: number; role: "assistant"; status: "error"; query: string };
 
 export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -50,26 +56,34 @@ export default function ChatPage() {
     });
   }, [messages]);
 
-  // A link like /?q=Kyoto%20weekend%20plan sends that query once the page
-  // loads, so testers and the README screenshot can open straight to a reply.
-  // The cleanup cancels the timer, so React's double-run in dev still sends once.
-  useEffect(() => {
-    const q = new URLSearchParams(window.location.search).get("q");
-    if (!q) return;
-    const t = setTimeout(() => send(q), 300);
-    return () => clearTimeout(t);
-    // Runs once on load; `send` only reads state that is still initial here.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   // Give focus back to the box once it unlocks.
   useEffect(() => {
     if (!isThinking && messages.length > 0) inputRef.current?.focus();
   }, [isThinking, messages.length]);
 
+  // Locks the box, waits, then asks the mock server and checks its answer.
+  // A body that can't become three cards turns the bubble into the error bubble.
+  function requestReply(replyId: number, query: string, forceFailure: boolean) {
+    setIsThinking(true);
+    timer.current = setTimeout(() => {
+      const reply = parseTripReply(fetchReplyBody(query, { forceFailure }));
+      setMessages((prev) =>
+        prev.map((m) => {
+          if (m.id !== replyId) return m;
+          return reply
+            ? { id: replyId, role: "assistant", status: "done", reply }
+            : { id: replyId, role: "assistant", status: "error", query };
+        }),
+      );
+      setIsThinking(false);
+    }, THINKING_MS);
+  }
+
   function send(text: string) {
-    const query = text.trim();
-    if (!query || isThinking) return;
+    if (isThinking) return;
+    // "/fail" at the end forces the broken reply. It's taken off what the guest sees.
+    const { query, forceFailure } = readTrigger(text);
+    if (!query) return;
 
     const questionId = nextId.current++;
     const replyId = nextId.current++;
@@ -80,16 +94,31 @@ export default function ChatPage() {
       { id: replyId, role: "assistant", status: "thinking" },
     ]);
     setDraft("");
-    setIsThinking(true);
-
-    timer.current = setTimeout(() => {
-      const reply = buildMockReply(query);
-      setMessages((prev) =>
-        prev.map((m) => (m.id === replyId ? { id: replyId, role: "assistant", status: "done", reply } : m)),
-      );
-      setIsThinking(false);
-    }, THINKING_MS);
+    requestReply(replyId, query, forceFailure);
   }
+
+  // Try again sends the same query, without the trigger, so the broken answer
+  // is skipped: the same bubble shows the thinking dots, then the three cards.
+  function retry(replyId: number, query: string) {
+    if (isThinking) return;
+    setMessages((prev) =>
+      prev.map((m) => (m.id === replyId ? { id: replyId, role: "assistant", status: "thinking" } : m)),
+    );
+    requestReply(replyId, query, false);
+  }
+
+  // A link like /?q=Kyoto%20weekend%20plan sends that query once the page
+  // loads, so testers and the README screenshots can open straight to a reply.
+  // Add %20%2Ffail to the end to open straight to the error bubble.
+  // The cleanup cancels the timer, so React's double-run in dev still sends once.
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get("q");
+    if (!q) return;
+    const t = setTimeout(() => send(q), 300);
+    return () => clearTimeout(t);
+    // Runs once on load; `send` only reads state that is still initial here.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -146,9 +175,19 @@ export default function ChatPage() {
                     <span className={styles.avatar} aria-hidden="true">
                       <Icon name="spark" size={15} />
                     </span>
-                    <div className={styles.thinkingBubble}>
+                    <div className={`${ASSISTANT_BUBBLE} ${ASSISTANT_BUBBLE_COLORS}`}>
                       <ThinkingDots label="Planning your trip" />
                     </div>
+                  </div>
+                );
+              }
+              if (m.status === "error") {
+                return (
+                  <div key={m.id} className={styles.botRow}>
+                    <span className={styles.avatar} aria-hidden="true">
+                      <Icon name="spark" size={15} />
+                    </span>
+                    <ErrorBubble onRetry={() => retry(m.id, m.query)} />
                   </div>
                 );
               }
