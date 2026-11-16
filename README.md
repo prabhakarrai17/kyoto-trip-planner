@@ -12,7 +12,7 @@ This is the prototype for the spec sheet "Building Airbnb's Kyoto trip planner b
 
 These are the rules from "Moderated Session Prototype Requirements: Trip-Planner Chat", checked on the live link above with nothing logged in. Every tick links to a screenshot that shows it.
 
-| Rule | Real phone | Safari 390px | Phone 390px | Laptop 1440px | Evidence |
+| Rule | Real phone | Safari | Phone 390px | Laptop 1440px | Evidence |
 | --- | :---: | :---: | :---: | :---: | --- |
 | The link is the production `*.vercel.app` domain, not a preview link | ✅ | ✅ | ✅ | ✅ | [Real phone address bar](docs/session/real-phone/1-landing.jpg), [Safari address bar](docs/session/safari/1-start-iphone-size.jpg) |
 | Opens with no install, no login and no configuration | ✅ | ✅ | ✅ | ✅ | [Real phone, first open](docs/session/real-phone/1-landing.jpg), [laptop](docs/session/laptop-0-thinking.png), [Safari, private window](docs/session/safari/1-start-iphone-size.jpg) |
@@ -28,7 +28,7 @@ These are the rules from "Moderated Session Prototype Requirements: Trip-Planner
 **Setups:**
 
 - **Real phone:** an Android phone in Chrome, run by hand on the live link. Chrome blocks screenshots in Incognito tabs, so the Try again shots were taken in a normal tab. That run still counts as fresh: the app sets no cookies and stores nothing in the browser (no local storage, session storage or IndexedDB), and the chat lives only in the page's memory, so every load starts from an empty chat with nothing carried over, exactly like a private window.
-- **Safari 390px:** Safari in a private window at iPhone size (390 × 844), run by hand on the live link.
+- **Safari:** Safari in a private window, run by hand on the live link.
 - **Phone 390px and Laptop 1440px:** a script drove a fresh incognito Chrome window on the live link. The phone setup used Chrome's iPhone 14 emulation (390px, Safari user agent, touch). The script typed the request, clicked Try again and recorded every change to the reply bubble: thinking → cards on the happy path, and thinking → error bubble → thinking → cards on the error path, with no moment where the chat was empty. The page was exactly as wide as the window, with nothing past the right edge.
 
 ### Session screenshots
@@ -60,17 +60,17 @@ Android phone, Chrome, dark mode, on the live link.
 
 ### Safari screenshots
 
-Safari, private window, at iPhone size (390 × 844), on the live link.
+Safari, private window, on the live link.
 
 <p>
 <img src="docs/session/safari/0-laptop-width-private.jpg" width="320" alt="Safari private window at laptop width, opening straight into the chat">
-<img src="docs/session/safari/1-start-iphone-size.jpg" width="320" alt="Safari at 390 by 844 showing the chat start page">
+<img src="docs/session/safari/1-start-iphone-size.jpg" width="320" alt="Safari showing the chat start page">
 </p>
 <p>
-<img src="docs/session/safari/2-thinking.jpg" width="200" alt="Safari at iPhone size: thinking dots with the box locked">
-<img src="docs/session/safari/3-cards-stay.jpg" width="160" alt="Safari at iPhone size: the Stay card">
-<img src="docs/session/safari/4-cards-experience-food.jpg" width="160" alt="Safari at iPhone size: the end of the Experience card and the Food card">
-<img src="docs/session/safari/5-error-bubble.jpg" width="160" alt="Safari at iPhone size: the error bubble with Try again">
+<img src="docs/session/safari/2-thinking.jpg" width="200" alt="Safari: thinking dots with the box locked">
+<img src="docs/session/safari/3-cards-stay.jpg" width="160" alt="Safari: the Stay card">
+<img src="docs/session/safari/4-cards-experience-food.jpg" width="160" alt="Safari: the end of the Experience card and the Food card">
+<img src="docs/session/safari/5-error-bubble.jpg" width="160" alt="Safari: the error bubble with Try again">
 </p>
 
 **Still open:** the Safari shots after Try again.
