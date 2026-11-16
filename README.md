@@ -4,6 +4,8 @@ A chat-style search prototype. A guest types a trip idea like "Kyoto weekend pla
 
 This is the prototype for the spec sheet "Building Airbnb's Kyoto trip planner before Thursday's guest test". It's a concept prototype, not an official Airbnb product.
 
+**How to fire the error trigger:** end any message with `/fail`. For example, type `Kyoto weekend plan /fail` and press Enter to see the error bubble with Try again. Screenshots: [error bubble](docs/error-bubble.png) and [three cards after Try again](docs/cards-after-retry.png).
+
 ## Screenshots
 
 The thread after sending "Kyoto weekend plan": the understood-intent chips, then the Stay, Experience and Food cards side by side, and the budget line.
