@@ -28,7 +28,7 @@ These are the rules from "Moderated Session Prototype Requirements: Trip-Planner
 **Setups:**
 
 - **Real phone:** an Android phone in Chrome, run by hand on the live link. Chrome blocks screenshots in Incognito tabs, so the Try again shots were taken in a normal tab. That run still counts as fresh: the app sets no cookies and stores nothing in the browser (no local storage, session storage or IndexedDB), and the chat lives only in the page's memory, so every load starts from an empty chat with nothing carried over, exactly like a private window.
-- **Safari 390px:** Safari on a Mac, in a private window, run by hand on the live link in Responsive Design Mode at iPhone size (390 × 844, 3x).
+- **Safari 390px:** Safari in a private window at iPhone size (390 × 844), run by hand on the live link.
 - **Phone 390px and Laptop 1440px:** a script drove a fresh incognito Chrome window on the live link. The phone setup used Chrome's iPhone 14 emulation (390px, Safari user agent, touch). The script typed the request, clicked Try again and recorded every change to the reply bubble: thinking → cards on the happy path, and thinking → error bubble → thinking → cards on the error path, with no moment where the chat was empty. The page was exactly as wide as the window, with nothing past the right edge.
 
 ### Session screenshots
@@ -60,11 +60,11 @@ Android phone, Chrome, dark mode, on the live link.
 
 ### Safari screenshots
 
-Safari on a Mac, private window, Responsive Design Mode at iPhone size (390 × 844), on the live link.
+Safari, private window, at iPhone size (390 × 844), on the live link.
 
 <p>
 <img src="docs/session/safari/0-laptop-width-private.jpg" width="320" alt="Safari private window at laptop width, opening straight into the chat">
-<img src="docs/session/safari/1-start-iphone-size.jpg" width="320" alt="Safari Responsive Design Mode at 390 by 844 showing the chat start page">
+<img src="docs/session/safari/1-start-iphone-size.jpg" width="320" alt="Safari at 390 by 844 showing the chat start page">
 </p>
 <p>
 <img src="docs/session/safari/2-thinking.jpg" width="200" alt="Safari at iPhone size: thinking dots with the box locked">
