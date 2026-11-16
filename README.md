@@ -4,7 +4,13 @@ A chat-style search prototype. A guest types a trip idea like "Kyoto weekend pla
 
 This is the prototype for the spec sheet "Building Airbnb's Kyoto trip planner before Thursday's guest test". It's a concept prototype, not an official Airbnb product.
 
+## Screenshot
+
+The thread after sending "Kyoto weekend plan": the understood-intent chips, then the Stay, Experience and Food cards side by side, and the budget line.
+
 ![The chat thread after asking for a Kyoto weekend plan, showing the Stay, Experience and Food cards side by side](docs/kyoto-thread.png)
+
+Image file: [`docs/kyoto-thread.png`](docs/kyoto-thread.png)
 
 ## Run it
 
