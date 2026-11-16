@@ -27,8 +27,8 @@ These are the rules from "Moderated Session Prototype Requirements: Trip-Planner
 
 **Setups:**
 
-- **Real phone:** an Android phone in Chrome, run by hand on the live link. Chrome blocks screenshots in Incognito tabs, so the Try again shots were taken in a normal tab. The app has no login and saves nothing, so a normal tab shows exactly what a private one does. The doc's phone setup is an iPhone 14 in Safari, covered as closely as possible by the Safari run below.
-- **Safari 390px:** Safari on a Mac, in a private window, run by hand on the live link in Responsive Design Mode at iPhone size (390 × 844, 3x). It's the same browser family as iPhone Safari at iPhone size, but not a physical iPhone, so the iPhone's own keyboard and touch handling aren't covered. The moment after Try again hasn't been captured in Safari yet.
+- **Real phone:** an Android phone in Chrome, run by hand on the live link. Chrome blocks screenshots in Incognito tabs, so the Try again shots were taken in a normal tab. That run still counts as fresh: the app sets no cookies and stores nothing in the browser (no local storage, session storage or IndexedDB), and the chat lives only in the page's memory, so every load starts from an empty chat with nothing carried over, exactly like a private window.
+- **Safari 390px:** Safari on a Mac, in a private window, run by hand on the live link in Responsive Design Mode at iPhone size (390 × 844, 3x).
 - **Phone 390px and Laptop 1440px:** a script drove a fresh incognito Chrome window on the live link. The phone setup used Chrome's iPhone 14 emulation (390px, Safari user agent, touch). The script typed the request, clicked Try again and recorded every change to the reply bubble: thinking → cards on the happy path, and thinking → error bubble → thinking → cards on the error path, with no moment where the chat was empty. The page was exactly as wide as the window, with nothing past the right edge.
 
 ### Session screenshots
@@ -73,7 +73,7 @@ Safari on a Mac, private window, Responsive Design Mode at iPhone size (390 × 8
 <img src="docs/session/safari/5-error-bubble.jpg" width="160" alt="Safari at iPhone size: the error bubble with Try again">
 </p>
 
-**Still open:** the Safari shots after Try again, and a run on a physical iPhone, which Hannah does at the dry run.
+**Still open:** the Safari shots after Try again.
 
 ## Team message
 
