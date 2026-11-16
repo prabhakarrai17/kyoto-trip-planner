@@ -10,32 +10,50 @@ This is the prototype for the spec sheet "Building Airbnb's Kyoto trip planner b
 
 ## Moderated session checklist
 
-These are the rules from "Moderated Session Prototype Requirements: Trip-Planner Chat". Each one was checked on the live link above in a fresh private window, with nothing logged in, on both session setups.
+These are the rules from "Moderated Session Prototype Requirements: Trip-Planner Chat", checked on the live link above with nothing logged in. Every tick links to a screenshot that shows it.
 
-| Rule | Phone (390px) | Laptop (1440px) |
-| --- | :---: | :---: |
-| The link is the production `*.vercel.app` domain, not a preview link | ✅ | ✅ |
-| Opens with no install, no login and no configuration | ✅ | ✅ |
-| Visible note that the trips are sample data and nothing is booked (the mocked data note under the message box) | ✅ | ✅ |
-| One typed request ("Kyoto weekend plan") shows a thinking state first | ✅ | ✅ |
-| 3 of 3 cards appear: stay, Experience and food | ✅ | ✅ |
-| The three cards look clearly different, not one layout with the text swapped | ✅ | ✅ |
-| At phone width nothing is cut off and nothing needs sideways scrolling | ✅ | n/a |
-| The forced failure (`/fail`) shows a friendly message with Try again inside the assistant bubble | ✅ | ✅ |
-| 0 blank-chat moments: at the failure, when Try again is pressed, and after it | ✅ | ✅ |
-| Try again brings the three cards back | ✅ | ✅ |
+| Rule | Real phone | Phone 390px | Laptop 1440px | Evidence |
+| --- | :---: | :---: | :---: | --- |
+| The link is the production `*.vercel.app` domain, not a preview link | ✅ | ✅ | ✅ | [Real phone address bar](docs/session/real-phone/1-landing.jpg) |
+| Opens with no install, no login and no configuration | ✅ | ✅ | ✅ | [Real phone, first open](docs/session/real-phone/1-landing.jpg), [laptop](docs/session/laptop-0-thinking.png) |
+| Visible note that the trips are sample data and nothing is booked | ✅ | ✅ | ✅ | Under the message box in every shot, e.g. [real phone](docs/session/real-phone/1-landing.jpg), [phone](docs/session/phone-1-cards.png), [laptop](docs/session/laptop-1-cards.png) |
+| One typed request ("Kyoto weekend plan") shows a thinking state first | ✅ | ✅ | ✅ | [Real phone](docs/session/real-phone/2-thinking.jpg), [phone](docs/session/phone-0-thinking.png), [laptop](docs/session/laptop-0-thinking.png) |
+| 3 of 3 cards appear: stay, Experience and food | ✅ | ✅ | ✅ | [Real phone](docs/session/real-phone/3-cards-stay.jpg) ([2](docs/session/real-phone/5-cards-experience-food.jpg)), [phone](docs/session/phone-1-cards.png), [laptop](docs/session/laptop-1-cards.png) |
+| The three cards look clearly different, not one layout with the text swapped | ✅ | ✅ | ✅ | [Laptop, side by side](docs/session/laptop-1-cards.png), [phone, stacked](docs/session/phone-1-cards.png) |
+| At phone width nothing is cut off and nothing needs sideways scrolling | ✅ | ✅ | n/a | [Real phone](docs/session/real-phone/4-cards-stay-experience.jpg), [phone, whole thread](docs/session/phone-1-cards.png) |
+| The forced failure (`/fail`) shows a friendly message with Try again inside the assistant bubble | ✅ | ✅ | ✅ | [Real phone](docs/session/real-phone/8-error-bubble.jpg), [phone](docs/session/phone-2-error-bubble.png), [laptop](docs/session/laptop-2-error-bubble.png) |
+| 0 blank-chat moments: at the failure, when Try again is pressed, and after it | Not captured | ✅ | ✅ | Thinking dots right after Try again: [phone](docs/session/phone-2b-thinking-after-retry.png), [laptop](docs/session/laptop-2b-thinking-after-retry.png) |
+| Try again brings the three cards back | Not captured | ✅ | ✅ | [Phone](docs/session/phone-3-cards-after-retry.png), [laptop](docs/session/laptop-3-cards-after-retry.png) |
 
-**How it was checked:** a script drove a fresh incognito Chrome window on the live link for each setup. It typed the request, clicked Try again, and recorded every change to the reply bubble. On both setups the bubble went thinking → cards on the happy path, and thinking → error bubble → thinking → cards on the error path, with no moment where the chat was empty. The page was exactly as wide as the window on both setups, with nothing past the right edge.
+**Setups:**
 
-The phone checks used Chrome's iPhone 14 emulation (390px, Safari user agent, touch). Open the link once on a real iPhone in Safari before the dry run to confirm.
+- **Real phone:** an Android phone in Chrome, run by hand on the live link. The doc's phone setup is an iPhone 14 in Safari. Hannah opens the link on her iPhone, so the Safari check happens at the dry run. The real-phone run didn't capture the moment after Try again; the other two setups cover it.
+- **Phone 390px and Laptop 1440px:** a script drove a fresh incognito Chrome window on the live link. The phone setup used Chrome's iPhone 14 emulation (390px, Safari user agent, touch). The script typed the request, clicked Try again and recorded every change to the reply bubble: thinking → cards on the happy path, and thinking → error bubble → thinking → cards on the error path, with no moment where the chat was empty. The page was exactly as wide as the window, with nothing past the right edge.
 
 ### Session screenshots
 
-| | Phone (390px) | Laptop (1440px) |
+| | Phone 390px | Laptop 1440px |
 | --- | --- | --- |
+| Thinking state | ![Phone: thinking dots after sending the request](docs/session/phone-0-thinking.png) | ![Laptop: thinking dots after sending the request](docs/session/laptop-0-thinking.png) |
 | Three cards | ![Phone: the Stay, Experience and Food cards stacked](docs/session/phone-1-cards.png) | ![Laptop: the Stay, Experience and Food cards side by side](docs/session/laptop-1-cards.png) |
 | Error bubble | ![Phone: the error bubble with Try again](docs/session/phone-2-error-bubble.png) | ![Laptop: the error bubble with Try again](docs/session/laptop-2-error-bubble.png) |
+| Right after Try again | ![Phone: thinking dots right after Try again](docs/session/phone-2b-thinking-after-retry.png) | ![Laptop: thinking dots right after Try again](docs/session/laptop-2b-thinking-after-retry.png) |
 | Cards after Try again | ![Phone: the three cards after Try again](docs/session/phone-3-cards-after-retry.png) | ![Laptop: the three cards after Try again](docs/session/laptop-3-cards-after-retry.png) |
+
+### Real phone screenshots
+
+Android phone, Chrome, dark mode, on the live link.
+
+<p>
+<img src="docs/session/real-phone/1-landing.jpg" width="160" alt="Real phone: the chat on first open, with the sample-data note">
+<img src="docs/session/real-phone/2-thinking.jpg" width="160" alt="Real phone: thinking dots with the message box locked">
+<img src="docs/session/real-phone/3-cards-stay.jpg" width="160" alt="Real phone: the Stay card">
+<img src="docs/session/real-phone/4-cards-stay-experience.jpg" width="160" alt="Real phone: the end of the Stay card and the Experience card">
+<img src="docs/session/real-phone/5-cards-experience-food.jpg" width="160" alt="Real phone: the end of the Experience card and the Food card">
+<img src="docs/session/real-phone/6-cards-food-budget.jpg" width="160" alt="Real phone: the Food card and the budget line">
+<img src="docs/session/real-phone/7-typing-fail.jpg" width="160" alt="Real phone: typing Kyoto weekend plan /fail">
+<img src="docs/session/real-phone/8-error-bubble.jpg" width="160" alt="Real phone: the error bubble with Try again">
+</p>
 
 ## Team message
 
@@ -45,11 +63,13 @@ To post in **#search-trip-planner** on Slack:
 >
 > Open it in a private window. No login is needed.
 >
-> Happy path: type "Kyoto weekend plan" and press Enter to see the stay, Experience and food cards.
+> Happy path: type "Kyoto weekend plan".
 >
-> Error path: type "Kyoto weekend plan /fail" to see the error bubble, then tap Try again to bring the cards back.
+> Error path: type "Kyoto weekend plan /fail", then tap Try again.
 >
-> All trips are sample data, and nothing is booked.
+> Worth watching: which card guests open first, or whether they keep typing instead, and whether they tap Try again without help.
+>
+> All trips are sample data. Nothing is booked.
 
 ## Screenshots
 
