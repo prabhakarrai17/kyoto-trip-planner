@@ -1,0 +1,91 @@
+.card {
+  --accent: var(--food);
+  --accent-tint: var(--food-tint);
+}
+
+/* Headline left, small square image box right. */
+.top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 76px;
+  gap: 12px;
+  align-items: center;
+}
+
+.heading {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.title {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.sub {
+  font-size: 13.5px;
+  color: var(--ink-2);
+}
+
+.thumb {
+  width: 76px;
+  height: 76px;
+  border-radius: 12px;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 4px;
+  background: linear-gradient(
+    150deg,
+    color-mix(in oklab, var(--food) 18%, var(--food-tint)),
+    color-mix(in oklab, var(--food) 45%, var(--food-tint))
+  );
+  color: color-mix(in oklab, var(--food) 80%, var(--ink));
+  font-size: 10.5px;
+  font-weight: 600;
+}
+
+.notes {
+  list-style: none;
+  display: grid;
+  gap: 0;
+}
+
+.notes li {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  padding: 8px 0;
+  border-top: 1px dashed color-mix(in oklab, var(--food) 30%, var(--line));
+  font-size: 13.5px;
+}
+
+.notes li:last-child {
+  border-bottom: 1px dashed color-mix(in oklab, var(--food) 30%, var(--line));
+}
+
+.notes svg {
+  flex: none;
+  margin-top: 2px;
+  color: var(--food);
+}
+
+.tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tags li {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--food-tint);
+  color: var(--food);
+}

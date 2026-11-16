@@ -1,0 +1,75 @@
+.reply {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+.intro {
+  display: grid;
+  gap: 8px;
+  padding-top: 5px;
+}
+
+.chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chips li {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--chip);
+  border-radius: 999px;
+  padding: 5px 11px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.chips svg {
+  color: var(--ink-3);
+}
+
+/* Stacked on phones, three across on wide screens so all cards fit one view. */
+.cards {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+  max-width: 440px;
+}
+
+@media (min-width: 900px) {
+  .cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: none;
+    align-items: stretch;
+  }
+}
+
+.budget {
+  display: grid;
+  gap: 8px;
+  max-width: 440px;
+  font-size: 13.5px;
+  color: var(--ink-2);
+}
+
+.budget strong {
+  color: var(--ink);
+}
+
+.meter {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--chip);
+  overflow: hidden;
+}
+
+.meter span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--ink-2);
+}

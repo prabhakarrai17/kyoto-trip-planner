@@ -1,0 +1,6 @@
+.filler {
+  font-style: italic;
+  color: var(--ink-3);
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+}

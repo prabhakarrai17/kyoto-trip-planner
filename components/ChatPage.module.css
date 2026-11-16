@@ -1,0 +1,245 @@
+/* App shell: header, scrolling thread, composer pinned to the bottom. */
+.app {
+  height: 100dvh;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  background: var(--paper);
+}
+
+.header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.headerInner,
+.threadInner,
+.form {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+.headerInner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-block: 12px;
+}
+
+.mark {
+  width: 36px;
+  height: 36px;
+  flex: none;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.titles {
+  min-width: 0;
+  flex: 1;
+}
+
+.title {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: var(--ink-3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.badge {
+  flex: none;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px 9px;
+}
+
+/* Thread */
+.thread {
+  position: relative;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-padding-top: 16px;
+}
+
+.threadInner {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-block: 24px 32px;
+  min-height: 100%;
+}
+
+.userRow {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.userBubble {
+  max-width: min(80%, 520px);
+  background: var(--ink);
+  color: var(--paper);
+  padding: 10px 16px;
+  border-radius: 20px 20px 6px 20px;
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+.botRow {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--ink-2);
+}
+
+.thinkingBubble {
+  justify-self: start;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 20px 20px 20px 6px;
+  padding: 10px 16px;
+}
+
+/* Empty state */
+.empty {
+  margin: auto;
+  max-width: 460px;
+  text-align: center;
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+  padding-block: 24px;
+}
+
+.emptyTitle {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(26px, 6vw, 34px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.emptyText {
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+.suggestion {
+  margin-top: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 999px;
+  padding: 9px 16px;
+  font-weight: 500;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.suggestion:hover {
+  border-color: var(--ink-3);
+}
+
+.suggestion:active {
+  transform: scale(0.98);
+}
+
+/* Composer */
+.composer {
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  padding-block: 12px max(12px, env(safe-area-inset-bottom, 0px));
+}
+
+.form {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  height: 46px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  padding: 0 18px;
+  font-size: 15px;
+  transition: border-color 0.15s ease, opacity 0.15s ease;
+}
+
+.input::placeholder {
+  color: var(--ink-3);
+}
+
+.input:hover:not(:disabled) {
+  border-color: var(--ink-3);
+}
+
+.input:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.send {
+  width: 46px;
+  height: 46px;
+  flex: none;
+  border: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  color: var(--paper);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.send:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.send:disabled {
+  cursor: not-allowed;
+  opacity: 0.3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .suggestion,
+  .input,
+  .send {
+    transition: none;
+  }
+}

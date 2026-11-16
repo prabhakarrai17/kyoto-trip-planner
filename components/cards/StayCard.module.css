@@ -1,0 +1,98 @@
+.card {
+  --accent: var(--stay);
+  --accent-tint: var(--stay-tint);
+}
+
+.title {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+/* Wide image box: placeholder until image rights are cleared. */
+.photo {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  max-width: 100%;
+  border-radius: 12px;
+  background:
+    radial-gradient(120% 90% at 85% 10%, color-mix(in oklab, var(--stay) 18%, transparent), transparent 60%),
+    linear-gradient(160deg, color-mix(in oklab, var(--stay) 14%, var(--stay-tint)), color-mix(in oklab, var(--stay) 40%, var(--stay-tint)));
+  display: grid;
+  place-items: center;
+}
+
+.photoNote {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: color-mix(in oklab, var(--stay) 80%, var(--ink));
+}
+
+.price,
+.rating {
+  position: absolute;
+  bottom: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 12.5px;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.15);
+}
+
+.price {
+  left: 10px;
+}
+
+.price small {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+.rating {
+  right: 10px;
+}
+
+.rating svg {
+  color: var(--stay);
+}
+
+.meta {
+  font-size: 13.5px;
+  color: var(--ink-2);
+}
+
+.highlight {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 14px;
+}
+
+.highlight svg {
+  flex: none;
+  margin-top: 3px;
+  color: var(--stay);
+}
+
+.total {
+  font-size: 13.5px;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.total strong {
+  color: var(--ink);
+  font-size: 15px;
+}
