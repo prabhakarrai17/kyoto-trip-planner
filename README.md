@@ -1,3 +1,5 @@
+**Live prototype: <https://kyoto-trip-planner-brown.vercel.app>** (opens with no login, no install and no setup)
+
 # Kyoto trip planner
 
 A chat-style search prototype. A guest types a trip idea like "Kyoto weekend plan". Instead of an empty results page, they get three starting points: a place to stay, something to do and somewhere to eat. They don't have to set a single filter first.
@@ -5,6 +7,49 @@ A chat-style search prototype. A guest types a trip idea like "Kyoto weekend pla
 This is the prototype for the spec sheet "Building Airbnb's Kyoto trip planner before Thursday's guest test". It's a concept prototype, not an official Airbnb product.
 
 **How to fire the error trigger:** end any message with `/fail`. For example, type `Kyoto weekend plan /fail` and press Enter to see the error bubble with Try again. Screenshots: [error bubble](docs/error-bubble.png) and [three cards after Try again](docs/cards-after-retry.png).
+
+## Moderated session checklist
+
+These are the rules from "Moderated Session Prototype Requirements: Trip-Planner Chat". Each one was checked on the live link above in a fresh private window, with nothing logged in, on both session setups.
+
+| Rule | Phone (390px) | Laptop (1440px) |
+| --- | :---: | :---: |
+| The link is the production `*.vercel.app` domain, not a preview link | ✅ | ✅ |
+| Opens with no install, no login and no configuration | ✅ | ✅ |
+| Visible note that the trips are sample data and nothing is booked (the mocked data note under the message box) | ✅ | ✅ |
+| One typed request ("Kyoto weekend plan") shows a thinking state first | ✅ | ✅ |
+| 3 of 3 cards appear: stay, Experience and food | ✅ | ✅ |
+| The three cards look clearly different, not one layout with the text swapped | ✅ | ✅ |
+| At phone width nothing is cut off and nothing needs sideways scrolling | ✅ | n/a |
+| The forced failure (`/fail`) shows a friendly message with Try again inside the assistant bubble | ✅ | ✅ |
+| 0 blank-chat moments: at the failure, when Try again is pressed, and after it | ✅ | ✅ |
+| Try again brings the three cards back | ✅ | ✅ |
+
+**How it was checked:** a script drove a fresh incognito Chrome window on the live link for each setup. It typed the request, clicked Try again, and recorded every change to the reply bubble. On both setups the bubble went thinking → cards on the happy path, and thinking → error bubble → thinking → cards on the error path, with no moment where the chat was empty. The page was exactly as wide as the window on both setups, with nothing past the right edge.
+
+The phone checks used Chrome's iPhone 14 emulation (390px, Safari user agent, touch). Open the link once on a real iPhone in Safari before the dry run to confirm.
+
+### Session screenshots
+
+| | Phone (390px) | Laptop (1440px) |
+| --- | --- | --- |
+| Three cards | ![Phone: the Stay, Experience and Food cards stacked](docs/session/phone-1-cards.png) | ![Laptop: the Stay, Experience and Food cards side by side](docs/session/laptop-1-cards.png) |
+| Error bubble | ![Phone: the error bubble with Try again](docs/session/phone-2-error-bubble.png) | ![Laptop: the error bubble with Try again](docs/session/laptop-2-error-bubble.png) |
+| Cards after Try again | ![Phone: the three cards after Try again](docs/session/phone-3-cards-after-retry.png) | ![Laptop: the three cards after Try again](docs/session/laptop-3-cards-after-retry.png) |
+
+## Team message
+
+To post in **#search-trip-planner** on Slack:
+
+> Hi Hannah, Tomás, Priya and Daniel. The Kyoto trip-planner prototype is ready for Thursday's dry run (13 March) and the first guest sessions on 1 April: https://kyoto-trip-planner-brown.vercel.app
+>
+> Open it in a private window. No login is needed.
+>
+> Happy path: type "Kyoto weekend plan" and press Enter to see the stay, Experience and food cards.
+>
+> Error path: type "Kyoto weekend plan /fail" to see the error bubble, then tap Try again to bring the cards back.
+>
+> All trips are sample data, and nothing is booked.
 
 ## Screenshots
 
